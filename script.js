@@ -45,6 +45,16 @@ function playGame() {
     playRound(humanSelection, computerSelection);
     round++;
   }
+
+  console.log(`You won ${humanScore} of 5 rounds`);
+
+  if (humanScore > computerScore) {
+    return console.log("You won the game! Congratulations!");
+  } else if (humanScore < computerScore) {
+    return console.log("You lost the game! Try again another time.");
+  } else {
+    return console.log("It's a tie!");
+  }
 }
 
 playGame();
