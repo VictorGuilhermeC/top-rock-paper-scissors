@@ -24,18 +24,20 @@ function playGame() {
   let round = 0;
 
   function playRound(humanChoice, computerChoice) {
+    const picks = `Your pick: ${humanChoice}. The Computer's pick: ${computerChoice}. `;
+
     if (humanChoice === computerChoice) {
-      return console.log(`It's a tie! Both picked ${humanChoice}!`);
+      return console.log(picks + `It's a tie!`);
     } else if (
       (humanChoice === "rock" && computerChoice === "scissors") ||
       (humanChoice === "scissors" && computerChoice === "paper") ||
       (humanChoice === "paper" && computerChoice === "rock")
     ) {
       humanScore++;
-      return console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+      return console.log(picks + `You win this round!`);
     } else {
       computerScore++;
-      return console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
+      return console.log(picks + `You lose this round!`);
     }
   }
 
@@ -46,7 +48,9 @@ function playGame() {
     round++;
   }
 
-  console.log(`You won ${humanScore} of 5 rounds`);
+  console.log(
+    `Your score: ${humanScore}. The Computer's score: ${computerScore}.`
+  );
 
   if (humanScore > computerScore) {
     return console.log("You won the game! Congratulations!");
