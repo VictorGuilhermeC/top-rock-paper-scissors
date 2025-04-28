@@ -19,3 +19,6 @@ function getHumanChoice() {
   let answer = prompt("Rock, paper, scissors, GO!");
   return answer.toLowerCase();
 }
+
+let humanScore = 0;
+let computerScore = 0;
