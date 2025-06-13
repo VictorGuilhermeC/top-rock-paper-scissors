@@ -41,12 +41,12 @@ function playGame() {
     }
   }
 
-  while (round < 5) {
+  /* while (round < 5) {
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
     round++;
-  }
+  }*/
 
   console.log(
     `Your score: ${humanScore}. The Computer's score: ${computerScore}.`
