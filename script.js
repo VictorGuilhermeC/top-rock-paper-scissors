@@ -1,3 +1,10 @@
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+//Add an event listener to the buttons that call your playRound function with the
+// correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+
 function getComputerChoice() {
   let randomNum = Math.floor(Math.random() * 3);
 
@@ -11,11 +18,6 @@ function getComputerChoice() {
     case 2:
       return "scissors";
   }
-}
-
-function getHumanChoice() {
-  let answer = prompt("Rock, paper, scissors, GO!");
-  return answer.toLowerCase();
 }
 
 function playGame() {
@@ -41,12 +43,13 @@ function playGame() {
     }
   }
 
-  /* while (round < 5) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    round++;
-  }*/
+  rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
+  paper.addEventListener("click", () =>
+    playRound("paper", getComputerChoice())
+  );
+  scissors.addEventListener("click", () =>
+    playRound("scissors", getComputerChoice())
+  );
 
   console.log(
     `Your score: ${humanScore}. The Computer's score: ${computerScore}.`
