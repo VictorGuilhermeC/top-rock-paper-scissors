@@ -18,29 +18,28 @@ function getComputerChoice() {
       return "scissors";
   }
 }
+function playRound(humanChoice, computerChoice) {
+  const picks = `Your pick: ${humanChoice}. The Computer's pick: ${computerChoice}. `;
+
+  if (humanChoice === computerChoice) {
+    message.textContent = picks + `It's a tie!`;
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "scissors" && computerChoice === "paper") ||
+    (humanChoice === "paper" && computerChoice === "rock")
+  ) {
+    humanScore++;
+    message.textContent = picks + `You win this round!`;
+  } else {
+    computerScore++;
+    message.textContent = picks + `You lose this round!`;
+  }
+  return div.appendChild(message);
+}
 
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
-
-  function playRound(humanChoice, computerChoice) {
-    const picks = `Your pick: ${humanChoice}. The Computer's pick: ${computerChoice}. `;
-
-    if (humanChoice === computerChoice) {
-      message.textContent = picks + `It's a tie!`;
-    } else if (
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "scissors" && computerChoice === "paper") ||
-      (humanChoice === "paper" && computerChoice === "rock")
-    ) {
-      humanScore++;
-      message.textContent = picks + `You win this round!`;
-    } else {
-      computerScore++;
-      message.textContent = picks + `You lose this round!`;
-    }
-    return div.appendChild(message);
-  }
 
   rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
   paper.addEventListener("click", () =>
