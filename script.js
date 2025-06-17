@@ -1,9 +1,8 @@
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
-
-//Add an event listener to the buttons that call your playRound function with the
-// correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+const message = document.createElement("p");
+const div = document.querySelector("div");
 
 function getComputerChoice() {
   let randomNum = Math.floor(Math.random() * 3);
@@ -23,24 +22,24 @@ function getComputerChoice() {
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
-  let round = 0;
 
   function playRound(humanChoice, computerChoice) {
     const picks = `Your pick: ${humanChoice}. The Computer's pick: ${computerChoice}. `;
 
     if (humanChoice === computerChoice) {
-      return console.log(picks + `It's a tie!`);
+      message.textContent = picks + `It's a tie!`;
     } else if (
       (humanChoice === "rock" && computerChoice === "scissors") ||
       (humanChoice === "scissors" && computerChoice === "paper") ||
       (humanChoice === "paper" && computerChoice === "rock")
     ) {
       humanScore++;
-      return console.log(picks + `You win this round!`);
+      message.textContent = picks + `You win this round!`;
     } else {
       computerScore++;
-      return console.log(picks + `You lose this round!`);
+      message.textContent = picks + `You lose this round!`;
     }
+    return div.appendChild(message);
   }
 
   rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
