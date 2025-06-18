@@ -1,13 +1,16 @@
+const buttons = document.querySelector("#buttons");
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const message = document.createElement("p");
-const div = document.querySelector("div");
+const display = document.querySelector("#display");
 const playerScore = document.querySelector("#playerScore");
 const computerScore = document.querySelector("#computerScore");
 let playerScoreValue = Number(playerScore.textContent);
-
 let computerScoreValue = Number(computerScore.textContent);
+const gameOver = document.createElement("h2");
+const restartButton = document.createElement("button");
+restartButton.textContent = "Restart";
 
 function getComputerChoice() {
   let randomNum = Math.floor(Math.random() * 3);
@@ -42,8 +45,21 @@ function playRound(humanChoice, computerChoice) {
     computerScore.textContent = computerScoreValue;
     message.textContent = picks + `You lose this round!`;
   }
-  return div.appendChild(message);
+  display.appendChild(message);
+
+  if (playerScoreValue === 5 || computerScoreValue === 5) {
+    rock.remove();
+    scissors.remove();
+    paper.remove();
+    buttons.appendChild(restartButton);
+    playerScoreValue > computerScoreValue
+      ? (gameOver.textContent = "Congratulations! You won the game!")
+      : (gameOver.textContent = "You lost the game! Better luck next time!");
+    return display.appendChild(gameOver);
+  }
 }
+
+function endGame() {}
 
 function playGame() {
   rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
@@ -55,18 +71,6 @@ function playGame() {
   scissors.addEventListener("click", () =>
     playRound("scissors", getComputerChoice())
   );
-
-  console.log(
-    `Your score: ${humanScore}. The Computer's score: ${computerScore}.`
-  );
-
-  if (humanScore > computerScore) {
-    return console.log("You won the game! Congratulations!");
-  } else if (humanScore < computerScore) {
-    return console.log("You lost the game! Try again another time.");
-  } else {
-    return console.log("It's a tie!");
-  }
 }
 
 playGame();
