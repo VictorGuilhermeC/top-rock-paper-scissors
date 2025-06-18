@@ -3,6 +3,11 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const message = document.createElement("p");
 const div = document.querySelector("div");
+const playerScore = document.querySelector("#playerScore");
+const computerScore = document.querySelector("#computerScore");
+let playerScoreValue = Number(playerScore.textContent);
+
+let computerScoreValue = Number(computerScore.textContent);
 
 function getComputerChoice() {
   let randomNum = Math.floor(Math.random() * 3);
@@ -19,9 +24,6 @@ function getComputerChoice() {
   }
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
 function playRound(humanChoice, computerChoice) {
   const picks = `Your pick: ${humanChoice}. The Computer's pick: ${computerChoice}. `;
 
@@ -32,10 +34,12 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === "scissors" && computerChoice === "paper") ||
     (humanChoice === "paper" && computerChoice === "rock")
   ) {
-    humanScore++;
+    playerScoreValue++;
+    playerScore.textContent = playerScoreValue;
     message.textContent = picks + `You win this round!`;
   } else {
-    computerScore++;
+    computerScoreValue++;
+    computerScore.textContent = computerScoreValue;
     message.textContent = picks + `You lose this round!`;
   }
   return div.appendChild(message);
