@@ -18,6 +18,10 @@ function getComputerChoice() {
       return "scissors";
   }
 }
+
+let humanScore = 0;
+let computerScore = 0;
+
 function playRound(humanChoice, computerChoice) {
   const picks = `Your pick: ${humanChoice}. The Computer's pick: ${computerChoice}. `;
 
@@ -38,13 +42,12 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-
   rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
+
   paper.addEventListener("click", () =>
     playRound("paper", getComputerChoice())
   );
+
   scissors.addEventListener("click", () =>
     playRound("scissors", getComputerChoice())
   );
