@@ -9,8 +9,8 @@ const computerScore = document.querySelector("#computerScore");
 let playerScoreValue = Number(playerScore.textContent);
 let computerScoreValue = Number(computerScore.textContent);
 const gameOver = document.createElement("h2");
-const restartButton = document.createElement("button");
-restartButton.textContent = "Restart";
+const restartButton = document.querySelector("#restartButton");
+restartButton.classList.add("hidden");
 
 function getComputerChoice() {
   let randomNum = Math.floor(Math.random() * 3);
@@ -48,10 +48,10 @@ function playRound(humanChoice, computerChoice) {
   display.appendChild(message);
 
   if (playerScoreValue === 5 || computerScoreValue === 5) {
-    rock.remove();
-    scissors.remove();
-    paper.remove();
-    buttons.appendChild(restartButton);
+    rock.classList.add("hidden");
+    paper.classList.add("hidden");
+    scissors.classList.add("hidden");
+    restartButton.classList.remove("hidden");
     playerScoreValue > computerScoreValue
       ? (gameOver.textContent = "Congratulations! You won the game!")
       : (gameOver.textContent = "You lost the game! Better luck next time!");
@@ -59,7 +59,18 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function endGame() {}
+function gameReset() {
+  playerScore.textContent = 0;
+  computerScore.textContent = 0;
+  playerScoreValue = Number(playerScore.textContent);
+  computerScoreValue = Number(computerScore.textContent);
+  restartButton.classList.add("hidden");
+  rock.classList.remove("hidden");
+  paper.classList.remove("hidden");
+  scissors.classList.remove("hidden");
+  display.removeChild(message);
+  display.removeChild(gameOver);
+}
 
 function playGame() {
   rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
@@ -71,6 +82,8 @@ function playGame() {
   scissors.addEventListener("click", () =>
     playRound("scissors", getComputerChoice())
   );
+
+  restartButton.addEventListener("click", () => gameReset());
 }
 
 playGame();
