@@ -72,18 +72,9 @@ function gameReset() {
   display.removeChild(gameOver);
 }
 
-function playGame() {
-  rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
-
-  paper.addEventListener("click", () =>
-    playRound("paper", getComputerChoice())
-  );
-
-  scissors.addEventListener("click", () =>
-    playRound("scissors", getComputerChoice())
-  );
-
-  restartButton.addEventListener("click", () => gameReset());
-}
-
-playGame();
+rock.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paper.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissors.addEventListener("click", () =>
+  playRound("scissors", getComputerChoice())
+);
+restartButton.addEventListener("click", () => gameReset());
